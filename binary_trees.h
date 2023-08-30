@@ -60,6 +60,8 @@ binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);
 int bst_checker(const binary_tree_t *tree, int min, int max);
 int binary_tree_is_bst(const binary_tree_t *tree);
 bst_t *bst_insert(bst_t **tree, int value);
+bst_t *array_to_bst(int *array, size_t size);
+void binary_tree_delete(binary_tree_t *tree);
 /**
  * struct QueueNode_s - A linked list node for the queue
  * @data: Data to be stored in the node
