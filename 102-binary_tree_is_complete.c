@@ -7,40 +7,35 @@
 */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	size_t index = 0, size = 0;
-	binary_tree_t **queue = NULL, *current = NULL;
+	size_t size;
 
 	if (tree == NULL)
 	{
 		return (0);
 	}
 	size = binary_tree_size(tree);
-	queue = calloc(size, sizeof(binary_tree_t *));
+	return (measure_complete(tree, 0, size));
+}
 
-	if (queue == NULL)
+/**
+ * measure_complete - Measures if a binary tree is complete
+ * @tree: Pointer to the root node of the tree to measure
+ * @index: The index of the node
+ * @size: Size of the tree
+ * Return: 1 if tree is complete, 0 otherwise
+*/
+int measure_complete(const binary_tree_t *tree, size_t index, size_t size)
+{
+	if (tree == NULL)
+	{
+		return (1);
+	}
+	if (index >= size)
 	{
 		return (0);
 	}
-	queue[index++] = (binary_tree_t *)tree;
-
-	while (index < size)
-	{
-		current = queue[index];
-		index++;
-
-		if (current != NULL)
-		{
-			queue[index++] = current->left;
-			queue[index++] = current->right;
-		}
-	}
-	index--;
-	for (; index > 0 && queue[index] == NULL; index--)
-		;
-
-	free(queue);
-
-	return (index == 0);
+	return (measure_complete(tree->left, 2 * index + 1, size) &&
+			measure_complete(tree->right, 2 * index + 2, size));
 }
 
 /**
