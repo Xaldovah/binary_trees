@@ -45,6 +45,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 void queue_push(queue_t **queue, void *data)
 {
 	QueueNode *new_node = NULL;
+
 	if (queue == NULL || *queue == NULL || data == NULL)
 	{
 		return;
