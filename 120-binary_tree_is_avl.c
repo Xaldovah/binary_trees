@@ -7,25 +7,19 @@
 */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
-	int left_height, right_height, is_left_avl, is_right_avl;
+	int diff;
 
 	if (tree == NULL)
 	{
 		return (0);
 	}
-	left_height = binary_tree_height(tree->left);
-	right_height = binary_tree_height(tree->right);
-	if (abs(left_height - right_height) > 1)
+	diff = binary_tree_height(tree->left) - binary_tree_height(tree->right);
+
+	if (diff > 1 || diff < -1)
 	{
 		return (0);
 	}
-	is_left_avl = binary_tree_is_avl(tree->left);
-	if (!is_left_avl)
-	{
-		return (0);
-	}
-	is_right_avl = binary_tree_is_avl(tree->right);
-	if (!is_right_avl)
+	if (!binary_tree_is_avl(tree->left) || !binary_tree_is_avl(tree->right))
 	{
 		return (0);
 	}
