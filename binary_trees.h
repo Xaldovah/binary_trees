@@ -88,7 +88,4 @@ typedef struct queue_s
 	QueueNode *rear;
 } queue_t;
 
-void queue_push(queue_t **queue, void *data);
-void *queue_pop(queue_t **queue);
-
 #endif /* _BINARY_TREES_H_ */
