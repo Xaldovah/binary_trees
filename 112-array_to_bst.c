@@ -8,35 +8,39 @@
 */
 bst_t *array_to_bst(int *array, size_t size)
 {
-	bst_t *root = NULL;
+	bst_t *root = NULL, *node;
 	size_t i;
 
-	if (array == NULL || size == 0)
-	{
-		return (NULL);
-	}
 	for (i = 0; i < size; i++)
 	{
-		if (bst_insert(&root, array[i]) == NULL)
+		node = bst_insert(&root, array[i]);
+		if (node == NULL)
 		{
-			binary_tree_delete(root);
 			return (NULL);
 		}
 	}
 	return (root);
 }
 
+
 /**
- * binary_tree_delete - Deletes a binary tree
- * @tree: Pointer to the root node of the tree to delete
- * Return: Nothing
+ * bst_node - Creates a binary search tree node
+ * @parent: Pointer to the parent node of the new node
+ * @value: Value to insert
+ * Return: Pointer to the new node
 */
-void binary_tree_delete(binary_tree_t *tree)
+bst_t *bst_node(bst_t *parent, int value)
 {
-	if (tree != NULL)
+	bst_t *new_node;
+
+	new_node = malloc(sizeof(bst_t));
+	if (new_node == NULL)
 	{
-		binary_tree_delete(tree->left);
-		binary_tree_delete(tree->right);
-		free(tree);
+		return (NULL);
 	}
+	new_node->parent = parent;
+	new_node->n = value;
+	new_node->left = NULL;
+	new_node->right = NULL;
+	return (new_node);
 }

@@ -65,6 +65,7 @@ void binary_tree_delete(binary_tree_t *tree);
 bst_t *bst_search(const bst_t *tree, int value);
 int binary_tree_is_avl(const binary_tree_t *tree);
 size_t binary_tree_height(const binary_tree_t *tree);
+bst_t *bst_node(bst_t *parent, int value);
 
 /**
  * struct QueueNode_s - A linked list node for the queue
